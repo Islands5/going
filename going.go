@@ -43,7 +43,8 @@ func (p *initCmd) SetFlags(f *flag.FlagSet) {
 
 func (p *initCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 	// TODO: ここのディレクトリ変更
-	err := exec.Command("cp", "-r", "github.com/islands5/going-assets", "./going-assets").Run()
+	path := os.Getenv("GOPATH") + "/src/" + "github.com/islands5/going/assets"
+	err := exec.Command("cp", "-r", path, "./going-assets").Run()
 	if err != nil {
 		fmt.Println(err)
 	}
